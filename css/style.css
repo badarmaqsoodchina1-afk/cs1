@@ -1,0 +1,255 @@
+/* =========================================================================
+   Prof. Chongsheng Zhang — Academic Homepage Stylesheet
+   ========================================================================= */
+
+:root {
+  --color-bg: #f4f4f1;
+  --color-card: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-soft: #555;
+  --color-text-muted: #888;
+  --color-link: #1a4ed8;
+  --color-link-hover: #0a2db8;
+  --color-border: #e5e5e0;
+  --color-accent: #b8860b;
+  --color-tag-bg: #efefe9;
+
+  --font-serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --radius: 6px;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  --max-width: 920px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5em 0;
+}
+h1 { font-size: 2.2rem; line-height: 1.15; }
+h2 { font-size: 1.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.4rem; margin-bottom: 1rem; }
+h3 { font-size: 1.15rem; }
+p  { margin: 0 0 1em 0; }
+strong { font-weight: 600; }
+small { color: var(--color-text-muted); font-size: 0.85rem; }
+
+a { color: var(--color-link); text-decoration: none; transition: color 0.15s ease; }
+a:hover { color: var(--color-link-hover); text-decoration: underline; }
+
+.page { max-width: var(--max-width); margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+.topnav {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+}
+.topnav a { font-weight: 600; position: relative; padding: 0.15rem 0; }
+.topnav a.active { color: var(--color-text); pointer-events: none; }
+.topnav a.active::after {
+  content: ''; position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  height: 2px; background: var(--color-accent);
+}
+.topnav .sep { color: var(--color-text-muted); user-select: none; }
+
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  padding: 2rem 2.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+@media (max-width: 640px) { .card { padding: 1.4rem 1.25rem; } }
+
+.profile {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.profile-photo {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+.profile-info h1 { margin-bottom: 0.4rem; }
+.profile-info .chinese-name { font-size: 1.6rem; color: var(--color-text-soft); font-weight: 500; margin-left: 0.3rem; }
+.profile-info .title-line { font-size: 1.05rem; color: var(--color-text-soft); margin: 0.2rem 0; }
+.profile-info .email { margin-top: 0.6rem; color: var(--color-text-soft); }
+
+.profile-links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.profile-links a { font-weight: 600; font-size: 0.95rem; }
+
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--color-accent);
+  color: #fff !important;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: background 0.15s;
+  text-decoration: none !important;
+}
+.btn-cv:hover { background: #9a700a; }
+
+@media (max-width: 640px) {
+  .profile { grid-template-columns: 1fr; gap: 1.2rem; }
+  .profile-photo { max-width: 200px; margin: 0 auto; display: block; }
+  .profile-info { text-align: center; }
+  .profile-links { justify-content: center; }
+}
+
+.news-list { list-style: none; padding: 0; margin: 0; }
+.news-list li {
+  padding: 0.45rem 0;
+  border-bottom: 1px dashed var(--color-border);
+  font-size: 0.98rem;
+}
+.news-list li:last-child { border-bottom: none; }
+.news-date {
+  display: inline-block;
+  font-feature-settings: 'tnum';
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 0.88rem;
+  min-width: 88px;
+  margin-right: 0.5rem;
+}
+
+.tag-list {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  list-style: none; padding: 0; margin: 0.5rem 0 0 0;
+}
+.tag {
+  background: var(--color-tag-bg);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.88rem;
+  color: var(--color-text-soft);
+  font-weight: 500;
+}
+
+.stats {
+  display: flex; gap: 1.5rem;
+  margin-top: 1rem; padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+.stat { font-size: 0.92rem; color: var(--color-text-soft); }
+.stat strong {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+
+.research-theme {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.research-theme:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.research-theme h3 { color: var(--color-accent); margin-bottom: 0.4rem; }
+.research-theme .theme-papers { margin-top: 0.6rem; font-size: 0.93rem; color: var(--color-text-soft); }
+
+.year-section { margin-bottom: 1.8rem; }
+.year-section h3 {
+  font-size: 1.35rem;
+  color: var(--color-accent);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.8rem;
+}
+.pub-list {
+  list-style: none; padding: 0; margin: 0;
+  counter-reset: pub-counter;
+}
+.pub-list li {
+  padding: 0.7rem 0 0.7rem 2.2rem;
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  counter-increment: pub-counter;
+}
+.pub-list li::before {
+  content: counter(pub-counter) ".";
+  position: absolute;
+  left: 0; top: 0.7rem;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  width: 1.8rem;
+  text-align: right;
+}
+.pub-list li:last-child { border-bottom: none; }
+.pub-title { font-weight: 600; display: block; margin-bottom: 0.15rem; line-height: 1.4; }
+.pub-authors { font-size: 0.93rem; color: var(--color-text-soft); display: block; margin-bottom: 0.15rem; }
+.pub-authors .self { font-weight: 600; color: var(--color-text); }
+.pub-venue { font-size: 0.92rem; color: var(--color-text-muted); font-style: italic; display: block; }
+.pub-links { display: inline-block; margin-left: 0.5rem; font-style: normal; }
+.pub-links a {
+  display: inline-block;
+  background: var(--color-tag-bg);
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--color-text-soft);
+  font-weight: 600;
+  margin-right: 0.3rem;
+  text-decoration: none;
+}
+.pub-links a:hover { background: var(--color-accent); color: #fff !important; text-decoration: none; }
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.coming-soon { text-align: center; padding: 3rem 1rem; color: var(--color-text-muted); }
+.coming-soon h2 { border: none; font-size: 1.8rem; color: var(--color-accent); }
+
+.footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  padding: 1.5rem 0 0.5rem;
+}
+
+@media print {
+  .topnav, .footer { display: none; }
+  body { background: #fff; }
+  .card { box-shadow: none; padding: 0.5rem 0; }
+}

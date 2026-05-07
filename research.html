@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research — Chongsheng Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <nav class="topnav">
+      <a href="index.html">Home</a><span class="sep">·</span>
+      <a href="research.html" class="active">Research</a><span class="sep">·</span>
+      <a href="publications.html">Publications</a><span class="sep">·</span>
+      <a href="team.html">Team</a><span class="sep">·</span>
+      <a href="services.html">Services</a><span class="sep">·</span>
+      <a href="awards.html">Awards</a>
+    </nav>
+
+    <section class="card">
+      <h2>Research</h2>
+      <p>
+        My research lies at the intersection of <strong>machine learning</strong> and
+        <strong>computer vision</strong>, with a focus on solving practical problems involving
+        imbalanced data, scene understanding, and the digitization of cultural heritage.
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="research-theme">
+        <h3>1. Imbalance &amp; Long-tailed Learning</h3>
+        <p>Real-world data is rarely balanced. We develop algorithms for class-imbalance learning, multi-class imbalance, and long-tailed recognition — combining resampling, ensemble learning, fuzzy transitions, and prototypical learning. Our open-source toolkit <em>multi-imbalance</em> and recent surveys on long-tailed learning have become widely-cited references in the field.</p>
+        <p class="theme-papers"><strong>Selected works:</strong> <em>A systematic review on long-tailed learning</em> (TNNLS 2025); <em>Multi-imbalance: an open-source software</em> (KBS 2019); <em>Open-set long-tailed recognition</em> (Neural Networks 2025).</p>
+      </div>
+
+      <div class="research-theme">
+        <h3>2. Scene Text Detection &amp; Recognition (OCR)</h3>
+        <p>Reading text "in the wild" — on shop signs, road signs, and street views — is essential for autonomous driving and intelligent transportation. We have built large-scale Chinese street-view datasets (ShopSign), proposed character-level multi-segmentation networks, and explored fusion strategies for robust detection over low-quality images.</p>
+        <p class="theme-papers"><strong>Selected works:</strong> <em>Street view text recognition for ITS</em> (IEEE TITS 2020); <em>Character-level street view text spotting</em> (IEEE TAI 2021); <em>UCR: unified character-radical dual-supervision</em> (Pattern Recognition 2025).</p>
+      </div>
+
+      <div class="research-theme">
+        <h3>3. Ancient Language Understanding</h3>
+        <p>AI is transforming how we study ancient scripts. We develop self-supervised and generative methods for <em>oracle bone inscriptions</em> (rejoining fragments, recognizing characters, font classification) and <em>ancient bamboo manuscripts</em> (binarization, ink enhancement, scribe verification). This work bridges machine learning with paleography and digital humanities.</p>
+        <p class="theme-papers"><strong>Selected works:</strong> <em>Data-driven oracle bone rejoining</em> (KDD 2022); <em>AI-powered oracle bone inscriptions recognition</em> (IJCAI 2021); <em>Binarizing severely degraded ancient bamboo slips</em> (BMVC 2025).</p>
+      </div>
+
+      <div class="research-theme">
+        <h3>4. Deep Contrastive &amp; Self-supervised Learning</h3>
+        <p>Contrastive and self-supervised learning provide powerful representations without requiring expensive labels. We have published a comprehensive survey of deep contrastive learning, and apply these ideas to medical imaging, video action recognition, and recommendation systems.</p>
+        <p class="theme-papers"><strong>Selected works:</strong> <em>Deep contrastive learning: a survey</em> (Acta Automatica Sinica 2023); <em>Quality-aware self-training</em> (AAAI 2023); <em>Unified deep semi-supervised graph learning</em> (Neural Networks 2023).</p>
+      </div>
+    </section>
+
+    <footer class="footer">© <span id="year">2026</span> Chongsheng Zhang</footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

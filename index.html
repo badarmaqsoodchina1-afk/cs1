@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chongsheng Zhang — Henan University</title>
+  <meta name="description" content="Homepage of Prof. Chongsheng Zhang, Professor of Computer Science at Henan University." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page">
+
+    <nav class="topnav">
+      <a href="index.html" class="active">Home</a><span class="sep">·</span>
+      <a href="research.html">Research</a><span class="sep">·</span>
+      <a href="publications.html">Publications</a><span class="sep">·</span>
+      <a href="team.html">Team</a><span class="sep">·</span>
+      <a href="services.html">Services</a><span class="sep">·</span>
+      <a href="awards.html">Awards</a>
+    </nav>
+
+    <section class="card">
+      <div class="profile">
+        <img src="images/profile.jpeg" alt="Photo of Prof. Chongsheng Zhang" class="profile-photo" />
+        <div class="profile-info">
+          <h1>Chongsheng Zhang <span class="chinese-name">张重生</span></h1>
+          <p class="title-line">Professor</p>
+          <p class="title-line">School of Computer and Information Engineering</p>
+          <p class="title-line">Henan University</p>
+          <p class="email">Email: cszhangai [at] qq.com</p>
+
+          <div class="profile-links">
+            <a href="https://scholar.google.com/citations?user=iCmyLZYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a href="https://dblp.org/pid/82/4043.html" target="_blank" rel="noopener">DBLP</a>
+            <a href="data/CV.pdf" target="_blank" rel="noopener" class="cv-button">📄 Download CV</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card bio">
+      <h2>Short Bio</h2>
+      <p>
+        Prof. Chongsheng Zhang is a Professor at the
+        <a href="http://cs.henu.edu.cn/" target="_blank" rel="noopener">School of Computer and Information Engineering</a>,
+        Henan University. His research interests span
+        <strong>machine learning</strong>, <strong>computer vision and pattern recognition</strong>,
+        <strong>OCR</strong>, and <strong>ancient language understanding</strong>.
+      </p>
+      <p>
+        His recent work focuses on <em>long-tailed and imbalance learning</em>,
+        <em>scene text detection and recognition</em>, and AI-driven analysis of historical
+        scripts including oracle bone inscriptions and ancient bamboo manuscripts.
+        His publications have appeared in IEEE TNNLS, IEEE TITS, IEEE TAI, Pattern Recognition,
+        Information Sciences, ACM SIGKDD, AAAI, EMNLP Findings, BMVC, and other leading venues.
+      </p>
+
+      <h3 style="margin-top: 1.4rem;">Research Interests</h3>
+      <ul class="tag-list">
+        <li class="tag">Machine Learning</li>
+        <li class="tag">Computer Vision &amp; Pattern Recognition</li>
+        <li class="tag">OCR &amp; Scene Text</li>
+        <li class="tag">Ancient Language Understanding</li>
+        <li class="tag">Imbalance &amp; Long-tailed Learning</li>
+        <li class="tag">Deep Contrastive Learning</li>
+      </ul>
+
+      <div class="stats">
+        <div class="stat"><strong>2,096</strong>Total Citations</div>
+        <div class="stat"><strong>18</strong>h-index</div>
+        <div class="stat"><strong>27</strong>i10-index</div>
+        <div class="stat"><strong>70+</strong>Publications</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>News</h2>
+      <ul class="news-list" id="news-container">
+        <li class="loading">Loading news...</li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      © <span id="year">2026</span> Chongsheng Zhang
+    </footer>
+  </div>
+
+  <script src="js/news-loader.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

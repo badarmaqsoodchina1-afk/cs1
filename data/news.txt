@@ -1,0 +1,16 @@
+# =========================================================================
+# NEWS — Prof. Chongsheng Zhang
+#
+# HOW TO ADD NEWS:
+#   - Add ONE LINE per news item at the TOP of this file
+#   - Format:   YYYY-MM | Your news text (HTML allowed for links/italics)
+#   - Lines starting with # are comments (ignored)
+#   - Save and commit. The website updates automatically.
+# =========================================================================
+
+2026-01 | New paper accepted at <em>npj Heritage Science</em>: Tsinghua bamboo slip scribe verification using Siamese networks.
+2026-01 | Two new papers accepted at <em>IEEE Internet of Things Journal</em> on lightweight federated learning for medical IoT.
+2025-11 | Two papers accepted at <em>BMVC 2025</em> on ancient bamboo manuscript binarization and ink enhancement.
+2025-09 | Paper accepted at <em>Findings of EMNLP 2025</em>: GUARD — uncertainty-aware decoding for open-ended text generation.
+2025-06 | Our systematic review on <em>long-tailed learning</em> published in <em>IEEE TNNLS</em>.
+2024-12 | Paper on rough attention for retinal vessel segmentation (RCAR-UNet) published in <em>Information Sciences</em>.

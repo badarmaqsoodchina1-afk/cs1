@@ -1,0 +1,7 @@
+PLACE YOUR PROFESSOR'S CV HERE.
+
+Just rename the CV file to:    CV.pdf
+
+Upload it to this folder (data/) on GitHub. The "Download CV" button on the
+homepage will automatically link to it. To update the CV, simply replace
+this file with the new version (same filename: CV.pdf).

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications — Chongsheng Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page">
+
+    <nav class="topnav">
+      <a href="index.html">Home</a><span class="sep">·</span>
+      <a href="research.html">Research</a><span class="sep">·</span>
+      <a href="publications.html" class="active">Publications</a><span class="sep">·</span>
+      <a href="team.html">Team</a><span class="sep">·</span>
+      <a href="services.html">Services</a><span class="sep">·</span>
+      <a href="awards.html">Awards</a>
+    </nav>
+
+    <section class="card">
+      <h2>Publications</h2>
+      <p>
+        Selected publications, automatically rendered from a single BibTeX file.
+        For the complete list, please visit my
+        <a href="https://scholar.google.com/citations?user=iCmyLZYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        or
+        <a href="https://dblp.org/pid/82/4043.html" target="_blank" rel="noopener">DBLP</a> profile,
+        or <a href="data/CV.pdf" target="_blank" rel="noopener">download my CV</a>.
+        <strong>Bold</strong> indicates Prof. Zhang.
+      </p>
+      <p><small>📌 To add a new paper: open <code>data/publications.bib</code>, paste a BibTeX entry, commit. The page updates automatically.</small></p>
+    </section>
+
+    <div id="publications-container">
+      <section class="card">
+        <p class="loading">Loading publications…</p>
+      </section>
+    </div>
+
+    <footer class="footer">
+      © <span id="year">2026</span> Chongsheng Zhang
+    </footer>
+  </div>
+
+  <script src="js/bibtex-parser.js"></script>
+  <script src="js/publications-loader.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
