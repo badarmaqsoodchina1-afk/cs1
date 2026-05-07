@@ -8,6 +8,7 @@
 #   - Save and commit. The website updates automatically.
 # =========================================================================
 
+2026-01 | New paper accepted at Tested 
 2026-01 | New paper accepted at <em>npj Heritage Science</em>: Tsinghua bamboo slip scribe verification using Siamese networks.
 2026-01 | Two new papers accepted at <em>IEEE Internet of Things Journal</em> on lightweight federated learning for medical IoT.
 2025-11 | Two papers accepted at <em>BMVC 2025</em> on ancient bamboo manuscript binarization and ink enhancement.
