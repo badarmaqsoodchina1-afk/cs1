@@ -102,7 +102,7 @@ function formatVenue(entry) {
   let venue = entry.journal || entry.booktitle || entry.publisher || '';
   if (entry.volume) venue += ' ' + entry.volume;
   if (entry.number) venue += ' (' + entry.number + ')';
-  if (entry.pages) venue += ', ' + entry.pages.replace('--', '–');
-  if (entry.year) venue += ', ' + entry.year;
+  if (entry.pages) venue += ', pp.' + entry.pages.replace('--', '–');
+  if (entry.year) venue += ' (' + entry.year + ')';
   return venue;
 }
