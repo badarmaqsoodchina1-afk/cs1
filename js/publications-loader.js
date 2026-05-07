@@ -1,14 +1,71 @@
 /* Loads data/publications.bib and renders on publications.html */
 (function() {
+
+  /* Build link buttons (PDF, BibTeX, DOI, etc.) */
   function buildLinks(entry) {
     const links = [];
-    if (entry.pdf) links.push('<a href="' + entry.pdf + '" target="_blank">PDF</a>');
-    if (entry.url) links.push('<a href="' + entry.url + '" target="_blank">Link</a>');
-    if (entry.code) links.push('<a href="' + entry.code + '" target="_blank">Code</a>');
+    if (entry.pdf)     links.push('<a href="' + entry.pdf + '" target="_blank">PDF</a>');
+    links.push('<a href="#" class="bibtex-btn" data-key="' + entry.key + '">BibTeX</a>');
+    if (entry.url)     links.push('<a href="' + entry.url + '" target="_blank">Link</a>');
+    if (entry.code)    links.push('<a href="' + entry.code + '" target="_blank">Code</a>');
     if (entry.project) links.push('<a href="' + entry.project + '" target="_blank">Project</a>');
-    if (entry.doi) links.push('<a href="https://doi.org/' + entry.doi + '" target="_blank">DOI</a>');
+    if (entry.doi)     links.push('<a href="https://doi.org/' + entry.doi + '" target="_blank">DOI</a>');
     if (links.length === 0) return '';
-    return ' <span class="pub-links">[' + links.join('] [') + ']</span>';
+    return ' &nbsp;·&nbsp; <span class="pub-links">[' + links.join('] [') + ']</span>';
+  }
+
+  /* Reconstruct BibTeX from a parsed entry */
+  function entryToBibtex(entry) {
+    const skip = ['type', 'key', 'citations'];
+    let out = '@' + entry.type + '{' + entry.key + ',\n';
+    Object.keys(entry).forEach(function(k) {
+      if (skip.indexOf(k) !== -1) return;
+      out += '  ' + k + ' = {' + entry[k] + '},\n';
+    });
+    out += '}';
+    return out;
+  }
+
+  /* Show BibTeX popup */
+  function showBibtexPopup(entry) {
+    const bibtexStr = entryToBibtex(entry);
+    const overlay = document.createElement('div');
+    overlay.className = 'bibtex-overlay';
+    overlay.innerHTML =
+      '<div class="bibtex-popup">' +
+        '<div class="bibtex-popup-header">' +
+          '<strong>BibTeX Citation</strong>' +
+          '<button class="bibtex-close" title="Close">×</button>' +
+        '</div>' +
+        '<pre class="bibtex-content"></pre>' +
+        '<div class="bibtex-actions">' +
+          '<button class="bibtex-copy">📋 Copy</button>' +
+          '<button class="bibtex-download">⬇️ Download .bib</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    overlay.querySelector('.bibtex-content').textContent = bibtexStr;
+
+    function close() { document.body.removeChild(overlay); }
+    overlay.querySelector('.bibtex-close').onclick = close;
+    overlay.onclick = function(e) { if (e.target === overlay) close(); };
+
+    overlay.querySelector('.bibtex-copy').onclick = function() {
+      navigator.clipboard.writeText(bibtexStr).then(function() {
+        const btn = overlay.querySelector('.bibtex-copy');
+        const original = btn.textContent;
+        btn.textContent = '✓ Copied!';
+        setTimeout(function() { btn.textContent = original; }, 1500);
+      });
+    };
+
+    overlay.querySelector('.bibtex-download').onclick = function() {
+      const blob = new Blob([bibtexStr], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = entry.key + '.bib';
+      a.click();
+    };
   }
 
   async function loadPublications() {
@@ -20,7 +77,7 @@
       const bibtex = await response.text();
       const entries = parseBibtex(bibtex);
       if (entries.length === 0) {
-        container.innerHTML = '<section class="card"><p class="error-message">No publications found in <code>data/publications.bib</code>.</p></section>';
+        container.innerHTML = '<section class="card"><p class="error-message">No publications found.</p></section>';
         return;
       }
       const byYear = {};
@@ -51,11 +108,22 @@
         html += '</ul></div></section>';
       });
       container.innerHTML = html;
+
+      const entryByKey = {};
+      entries.forEach(function(e) { entryByKey[e.key] = e; });
+      document.querySelectorAll('.bibtex-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const key = btn.getAttribute('data-key');
+          if (entryByKey[key]) showBibtexPopup(entryByKey[key]);
+        });
+      });
+
     } catch (err) {
       console.error('Could not load publications:', err);
       container.innerHTML =
         '<section class="card"><p class="error-message">' +
-        '⚠️ Could not load <code>data/publications.bib</code>. Make sure the file exists.' +
+        '⚠️ Could not load <code>data/publications.bib</code>.' +
         '<br><small>Error: ' + err.message + '</small>' +
         '</p></section>';
     }
