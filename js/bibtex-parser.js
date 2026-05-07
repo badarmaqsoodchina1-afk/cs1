@@ -1,15 +1,46 @@
-/* Lightweight BibTeX Parser — no external dependencies */
+/* Lightweight BibTeX Parser — handles ANY format (IEEE, ACM, arXiv, etc.) */
 
 function parseBibtex(bibtexString) {
   const entries = [];
-  const entryRegex = /@(\w+)\s*\{\s*([^,]+),([\s\S]*?)\n\}/g;
-  let match;
-  while ((match = entryRegex.exec(bibtexString)) !== null) {
-    const type = match[1].toLowerCase();
-    const key = match[2].trim();
-    const fieldsBlock = match[3];
+  let i = 0;
+  const len = bibtexString.length;
+
+  while (i < len) {
+    /* Find next @ sign */
+    while (i < len && bibtexString[i] !== '@') i++;
+    if (i >= len) break;
+    i++; // skip @
+
+    /* Read entry type (article, inproceedings, etc.) */
+    let typeStart = i;
+    while (i < len && /[a-zA-Z]/.test(bibtexString[i])) i++;
+    const type = bibtexString.substring(typeStart, i).toLowerCase();
+
     if (type === 'comment' || type === 'string' || type === 'preamble') continue;
-    const entry = { type, key };
+
+    /* Skip whitespace, find opening { */
+    while (i < len && /\s/.test(bibtexString[i])) i++;
+    if (bibtexString[i] !== '{') continue;
+    i++;
+
+    /* Read key (until first comma) */
+    let keyStart = i;
+    while (i < len && bibtexString[i] !== ',' && bibtexString[i] !== '}') i++;
+    const key = bibtexString.substring(keyStart, i).trim();
+    if (bibtexString[i] === ',') i++;
+
+    /* Read fields until matching closing brace */
+    let depth = 1;
+    let fieldsStart = i;
+    while (i < len && depth > 0) {
+      if (bibtexString[i] === '{') depth++;
+      else if (bibtexString[i] === '}') depth--;
+      if (depth > 0) i++;
+    }
+    const fieldsBlock = bibtexString.substring(fieldsStart, i);
+    i++; // skip closing }
+
+    const entry = { type: type, key: key };
     Object.assign(entry, parseFields(fieldsBlock));
     entries.push(entry);
   }
@@ -102,7 +133,7 @@ function formatVenue(entry) {
   let venue = entry.journal || entry.booktitle || entry.publisher || '';
   if (entry.volume) venue += ' ' + entry.volume;
   if (entry.number) venue += ' (' + entry.number + ')';
-  if (entry.pages) venue += ', pp.' + entry.pages.replace('--', '–');
+  if (entry.pages) venue += ', pp.' + entry.pages.replace('--', '–').replace(/-/g, '–');
   if (entry.year) venue += ' (' + entry.year + ')';
   return venue;
 }
