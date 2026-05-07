@@ -40,7 +40,7 @@
         byYear[year].forEach(function(entry) {
           const authors = formatAuthors(entry.author || '', ['Chongsheng Zhang']);
           const venue = formatVenue(entry);
-          const cites = entry.citations ? '<span class="pub-citations">' + entry.citations + ' citations</span>' : '';
+          const cites = (entry.citations && entry.citations !== '0') ? ' &nbsp;·&nbsp; <span class="pub-citations">' + entry.citations + ' citations</span>' : '';
           const links = buildLinks(entry);
           html += '<li>' +
             '<span class="pub-title">' + (entry.title || 'Untitled') + '</span>' +
