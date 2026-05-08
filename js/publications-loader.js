@@ -1,7 +1,7 @@
 /* Loads data/publications.bib and renders on publications.html */
 (function() {
 
- /* Build link buttons (PDF, BibTeX, DOI, Link, etc.) */
+  /* Build link buttons (PDF, BibTeX, DOI, Link, etc.) */
   function buildLinks(entry) {
     const links = [];
     if (entry.pdf)     links.push('<a href="' + entry.pdf + '" target="_blank">PDF</a>');
