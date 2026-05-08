@@ -1,12 +1,21 @@
 /* Loads data/publications.bib and renders on publications.html */
 (function() {
 
-  /* Build link buttons (PDF, BibTeX, DOI, etc.) */
+ /* Build link buttons (PDF, BibTeX, DOI, Link, etc.) */
   function buildLinks(entry) {
     const links = [];
     if (entry.pdf)     links.push('<a href="' + entry.pdf + '" target="_blank">PDF</a>');
     links.push('<a href="#" class="bibtex-btn" data-key="' + entry.key + '">BibTeX</a>');
-    if (entry.url)     links.push('<a href="' + entry.url + '" target="_blank">Link</a>');
+
+    /* [Link] button: use manual URL if provided, otherwise auto-search Google Scholar */
+    if (entry.url) {
+      links.push('<a href="' + entry.url + '" target="_blank">Link</a>');
+    } else if (entry.title) {
+      const searchQuery = encodeURIComponent(entry.title);
+      const scholarUrl = 'https://scholar.google.com/scholar?q=' + searchQuery;
+      links.push('<a href="' + scholarUrl + '" target="_blank" title="Search on Google Scholar">Link</a>');
+    }
+
     if (entry.code)    links.push('<a href="' + entry.code + '" target="_blank">Code</a>');
     if (entry.project) links.push('<a href="' + entry.project + '" target="_blank">Project</a>');
     if (entry.doi)     links.push('<a href="https://doi.org/' + entry.doi + '" target="_blank">DOI</a>');
